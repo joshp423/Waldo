@@ -1,16 +1,14 @@
-
-import { Outlet } from 'react-router'
-import './App.css'
-import Nav from './components/Nav/nav'
+import { Outlet } from "react-router";
+import "./App.css";
+import Nav from "./components/Nav/nav";
 
 function App() {
-  
   return (
-      <>
-        <Nav />
-        <Outlet />
-      </>
-  )
+    <>
+      <Nav />
+      <Outlet />
+    </>
+  );
 }
 
-export default App
+export default App;
