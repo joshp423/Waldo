@@ -8,7 +8,7 @@ const routes = [
     element: <App />,
     children: [
       { index: true, element: <Homepage /> },
-      { path: "game/:gamename", element: <Game /> },
+      { path: "/game/:gameTitle", element: <Game /> },
     ],
   },
 ];

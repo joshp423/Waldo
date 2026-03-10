@@ -1,29 +1,30 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import GameControls from "./gameControls/gameControls";
-import spaceImage from "../../assets/Space.jpg";
-import toyImage from "../../assets/Toys.jpg";
-import troyImage from "../../assets/Troy.jpeg";
+import spaceImage from "../../../../assets/Space.jpg";
+import toyImage from "../../../../assets/Toys.jpg";
+import troyImage from "../../../../assets/Troy.jpeg";
 
 function Game() {
   const { gameTitle } = useParams();
+  let image;
 
   // establish controls
   const [selectedTarget, setSelectedTarget] = useState("");
-  const [cursor, setCursor] = useState("");
   const [targets, setTargets] = useState([]);
-  const [image, setImage] = useState("");
+  const cursor = selectedTarget !== "" ? "targeting" : "";
+  
+  console.log(gameTitle)
 
   // pull game targets from API
   useEffect(() => {
     async function getTargets() {
       try {
-        const response = await fetch("/get-targets", {
+        const response = await fetch(`/get-targets/${gameTitle}`, {
           headers: {
             "Content-Type": "application/json",
           },
           method: "GET",
-          body: JSON.stringify({ gameTitle: gameTitle }),
         });
         const data = await response.json();
         setTargets(data.targets);
@@ -31,22 +32,21 @@ function Game() {
         console.log(error); // change to proper handling
       }
     }
+    
     getTargets();
-  }, []);
+  }, [gameTitle]);
 
-  if (selectedTarget !== "") {
-    setCursor("targeting");
-  }
+  
 
   switch (gameTitle) {
     case "space-station":
-      setImage(spaceImage);
+      image = spaceImage;
       break;
     case "battle-of-troy":
-      setImage(troyImage);
+      image = troyImage;
       break;
     case "toy-store":
-      setImage(toyImage);
+      image = toyImage;
       break;
   }
 

@@ -2,15 +2,23 @@ import type { target } from "../../../../../types/target";
 
 type GameControlTargetProps = {
   target: target;
-  selectedCharacter: string;
+  selectedTarget: string;
+  setSelectedTarget: React.Dispatch<React.SetStateAction<string>>;
 };
 function GameControlTarget({
   target,
-  selectedCharacter,
+  selectedTarget,
+  setSelectedTarget
 }: GameControlTargetProps) {
+
+    const setNewTarget = () => {
+        setSelectedTarget(target.title);
+    }
+
   return (
     <div
-      className={`gameControlTarget ${selectedCharacter === target.title ? "active" : ""}`}
+      className={`gameControlTarget ${selectedTarget === target.title ? "active" : ""}`}
+      onClick={setNewTarget}
     >
       <img src={target.image} alt={target.title} />
       <h3>{target.title}</h3>
