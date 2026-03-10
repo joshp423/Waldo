@@ -9,7 +9,7 @@ const routes = [
     element: <App />,
     children: [
       { index: true, element: <Homepage /> },
-      { path: "games/:gamename", element: <Game /> },
+      { path: "game/:gamename", element: <Game /> },
     ],
   },
 ];

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
+
 type GameSelectProps = {
     image: string;
     title: string;
     gameLink: string;
 }
+
 function GameSelect ({image, title, gameLink}:GameSelectProps) {
 
 
