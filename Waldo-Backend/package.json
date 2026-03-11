@@ -1,0 +1,31 @@
+{
+  "name": "waldo-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/app.js",
+    "start-dev": "node --watch dist/app.js",
+    "build": "npx tsc",
+    "prettier": "npx prettier . --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "@types/pg": "^8.18.0",
+    "prisma": "^7.4.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.4.2",
+    "@prisma/client": "^7.4.2",
+    "dotenv": "^17.3.1",
+    "pg": "^8.20.0",
+    "prettier": "^3.8.1"
+  }
+}
