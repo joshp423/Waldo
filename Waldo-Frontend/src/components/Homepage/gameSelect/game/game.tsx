@@ -19,10 +19,7 @@ function Game() {
   const [userClickX, setUserClickX] = useState<number | null> (null)
   const [userClickY, setUserClickY] = useState<number | null> (null)
 
-  // const [imageZoom, setImageZoom] = useState<number>(100)
-  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | "">("")
-
-  const lastScrollTop = useRef(0)
+  const [imageZoom, setImageZoom] = useState<number>(100)
 
   //get image using useRef
   const gameImage = useRef<HTMLImageElement>(null);
@@ -39,7 +36,6 @@ function Game() {
           method: "GET",
         });
         const data = await response.json();
-        console.log(data)
         setTargets(data);
       } catch (error) {
         console.log(error); // change to proper handling
@@ -54,6 +50,30 @@ function Game() {
       console.log(userClickX, userClickY);
     }
   }, [userClickX, userClickY]);
+
+  useEffect(() => {
+    const container = imageContainer.current; //use the actual dom object given imageContainer is just a ref
+    if (!container) return;
+
+    const wheelZoom = (e: WheelEvent) => {
+      e.preventDefault(); // now safe
+      const sensitivity = 0.05;
+      const difference = e.deltaY;
+
+      setImageZoom(prevZoom => {
+        const newZoom = Math.round(prevZoom - difference * sensitivity); //round to clean up zoom
+        return Math.min(Math.max(newZoom, 100), 300);
+      });
+    };
+
+    // have to attach with passive: false because passive events can't call preventDefault
+    container.addEventListener("wheel", wheelZoom, { passive: false });
+
+    // Once done remove
+    return () => {
+      container.removeEventListener("wheel", wheelZoom);
+    };
+  }, []); // call just on mount
 
   switch (gameTitle) {
     case "space-station":
@@ -93,31 +113,12 @@ function Game() {
       <div
         className={`gameImageContainer ${cursor !== "targeting" ? "" : "targetSelected"}`}
         ref={imageContainer}
-        onScroll={
-            () => {
-              if (!imageContainer.current) {
-                return;
-              }
-              const currentScrollTop = imageContainer.current.scrollTop;
-
-              const direction = currentScrollTop > lastScrollTop.current ? "down" : "up";
-
-              if(direction !== scrollDirection) {
-                console.log(direction)
-                setScrollDirection(direction);
-              }
-
-              lastScrollTop.current = currentScrollTop
-              // if (scrollDirection === "up") {
-              //   setZoom((zoom))
-              // }
-            }
-          }
       >
         <img
           src={image}
           alt={gameTitle}
           ref={gameImage}
+          style={{ transform: `scale(${imageZoom / 100})` }}
           onClick={
             (e: React.MouseEvent<HTMLImageElement>) => {
               if (!gameImage.current) {

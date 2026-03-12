@@ -1,4 +1,5 @@
 .gameImageContainer{
     height: 80vh;    
-    overflow-y: scroll; 
+    overflow: hidden;
+    min-width: 100%
 }
