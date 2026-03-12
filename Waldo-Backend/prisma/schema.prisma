@@ -15,7 +15,7 @@ datasource db {
 
 model Games {
   id Int @id @default(autoincrement())
-  title String
+  title String @unique
   targets Targets[]
   leaders Leaderboard[]
 }
@@ -26,8 +26,8 @@ model Targets {
   gameid Int
   game Games @relation(fields: [gameid], references: [id]) 
   title String
-  x Int
-  y Int
+  x Decimal
+  y Decimal
 }
 
 model Leaderboard {
