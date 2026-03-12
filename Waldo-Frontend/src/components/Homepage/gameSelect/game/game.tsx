@@ -20,6 +20,16 @@ function Game() {
   const [userClickY, setUserClickY] = useState<number | null> (null)
 
   const [imageZoom, setImageZoom] = useState<number>(100)
+  const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
+
+  function getZoomOrigin(e:MouseEvent | WheelEvent) {
+    if(!gameImage.current) return {  x: 0.5, y: 0.5 };
+    const imageDetails = gameImage.current.getBoundingClientRect();
+    return {
+      x: (e.clientX - imageDetails.left) / imageDetails.width,
+      y: (e.clientY - imageDetails.top) / imageDetails.height
+    }
+  }
 
   //get image using useRef
   const gameImage = useRef<HTMLImageElement>(null);
@@ -59,6 +69,11 @@ function Game() {
       e.preventDefault(); // now safe
       const sensitivity = 0.05;
       const difference = e.deltaY;
+
+      const cursorPosition = getZoomOrigin(e);
+      setZoomOrigin({ x: cursorPosition.x * 100, y: cursorPosition.y * 100 });
+
+      
 
       setImageZoom(prevZoom => {
         const newZoom = Math.round(prevZoom - difference * sensitivity); //round to clean up zoom
@@ -118,7 +133,10 @@ function Game() {
           src={image}
           alt={gameTitle}
           ref={gameImage}
-          style={{ transform: `scale(${imageZoom / 100})` }}
+          style={{ 
+            transform: `scale(${imageZoom / 100})`,
+            transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`
+          }}
           onClick={
             (e: React.MouseEvent<HTMLImageElement>) => {
               if (!gameImage.current) {
