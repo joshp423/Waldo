@@ -1,4 +1,5 @@
 import type { target } from "../../../../../types/target";
+import "./gameControlTarget.css"
 
 type GameControlTargetProps = {
   target: target;

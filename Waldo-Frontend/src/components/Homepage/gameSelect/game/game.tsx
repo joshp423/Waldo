@@ -4,6 +4,7 @@ import GameControls from "./gameControls/gameControls";
 import spaceImage from "../../../../assets/Space.jpg";
 import toyImage from "../../../../assets/Toys.jpg";
 import troyImage from "../../../../assets/Troy.jpeg";
+import "./game.css"
 
 function Game() {
   const { gameTitle } = useParams();
@@ -13,11 +14,14 @@ function Game() {
   // establish controls
   const [selectedTarget, setSelectedTarget] = useState("");
   const [targets, setTargets] = useState([]);
-  const cursor = selectedTarget !== "" ? "targeting" : "";
+  const cursor = !selectedTarget ? "" : "targeting";
+  
   const [userClickX, setUserClickX] = useState<number | null> (null)
   const [userClickY, setUserClickY] = useState<number | null> (null)
-  const [imageZoom, setImageZoom] = useState<number>(100)
-  const [scrollDirection, setScrollDirection] = useState("")
+
+  // const [imageZoom, setImageZoom] = useState<number>(100)
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | "">("")
+
   const lastScrollTop = useRef(0)
 
   //get image using useRef
@@ -50,10 +54,6 @@ function Game() {
       console.log(userClickX, userClickY);
     }
   }, [userClickX, userClickY]);
-
-  useEffect(() => {
-    
-  })
 
   switch (gameTitle) {
     case "space-station":
@@ -99,14 +99,14 @@ function Game() {
                 return;
               }
               const currentScrollTop = imageContainer.current.scrollTop;
-              if (currentScrollTop > lastScrollTop.current) {
-                console.log("up")
-                setScrollDirection("up");
+
+              const direction = currentScrollTop > lastScrollTop.current ? "down" : "up";
+
+              if(direction !== scrollDirection) {
+                console.log(direction)
+                setScrollDirection(direction);
               }
-              else if (currentScrollTop < lastScrollTop.current) {
-                console.log("down")
-                setScrollDirection("down")
-              }
+
               lastScrollTop.current = currentScrollTop
               // if (scrollDirection === "up") {
               //   setZoom((zoom))
@@ -118,7 +118,6 @@ function Game() {
           src={image}
           alt={gameTitle}
           ref={gameImage}
-          style={{overflowY: "scroll"}}
           onClick={
             (e: React.MouseEvent<HTMLImageElement>) => {
               if (!gameImage.current) {
