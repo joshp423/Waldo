@@ -9,7 +9,6 @@ import "./game.css"
 function Game() {
   const { gameTitle } = useParams();
   let image;
-  console.log(gameTitle)
 
   // establish controls
   const [selectedTarget, setSelectedTarget] = useState("");
