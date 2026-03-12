@@ -13,6 +13,7 @@ function GameControlTarget({
 
     const setNewTarget = () => {
         setSelectedTarget(target.title);
+        console.log(selectedTarget)
     }
 
   return (
@@ -20,7 +21,7 @@ function GameControlTarget({
       className={`gameControlTarget ${selectedTarget === target.title ? "active" : ""}`}
       onClick={setNewTarget}
     >
-      <img src={target.image} alt={target.title} />
+      <img src={target.imageurl} alt={target.title} />
       <h3>{target.title}</h3>
     </div>
   );

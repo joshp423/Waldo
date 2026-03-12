@@ -1,7 +1,7 @@
 interface target {
   id: number;
   title: string;
-  image: string;
+  imageurl: string;
   xCoOrd: string;
   yCoOrd: string;
 }

@@ -8,6 +8,7 @@ type GameControlsProps = {
 };
 
 function GameControls({ targets, selectedTarget, setSelectedTarget }: GameControlsProps) {
+
   return (
   <div className="gameControls">
     {targets?.map((target) => (
