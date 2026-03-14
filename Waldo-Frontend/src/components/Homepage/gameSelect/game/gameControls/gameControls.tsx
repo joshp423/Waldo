@@ -5,22 +5,28 @@ type GameControlsProps = {
   targets: target[];
   selectedTarget: string;
   setSelectedTarget: React.Dispatch<React.SetStateAction<string>>;
+  completedTargets: string[];
 };
 
-function GameControls({ targets, selectedTarget, setSelectedTarget }: GameControlsProps) {
-
+function GameControls({
+  targets,
+  selectedTarget,
+  setSelectedTarget,
+  completedTargets,
+}: GameControlsProps) {
   return (
-  <div className="gameControls">
-    {targets?.map((target) => (
-        <GameControlTarget 
-            key={target.id}
-            target={target}
-            selectedTarget={selectedTarget}
-            setSelectedTarget={setSelectedTarget}
+    <div className="gameControls">
+      {targets?.map((target) => (
+        <GameControlTarget
+          key={target.id}
+          target={target}
+          selectedTarget={selectedTarget}
+          setSelectedTarget={setSelectedTarget}
+          completedTargets={completedTargets}
         />
-    ))}
-  </div>
-  )
+      ))}
+    </div>
+  );
 }
 
 export default GameControls;

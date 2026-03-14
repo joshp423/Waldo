@@ -2,8 +2,8 @@ interface target {
   id: number;
   title: string;
   imageurl: string;
-  xCoOrd: string;
-  yCoOrd: string;
+  x: string;
+  y: string;
 }
 
 export type { target };
