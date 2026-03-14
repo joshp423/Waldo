@@ -128,14 +128,14 @@ function Game() {
   }
   
 
-  // , timer
+  // timer
 
   const [timerAmount, setTimerAmount] = useState(0); // start timer at 0
   const timerStatus = useRef<number | null>(null); // keep a record of timerStatus, doesn't need to impact rendering so useRef
 
   useEffect(() => {
     //set timer and interval on mount
-    timerStatus.current = setInterval(() => {
+    timerStatus.current = setInterval(() => { //track the seconds ticking over and timerAmount updating without re-rendering
       setTimerAmount((prev) => prev + 1);
     }, 1000 ); //every 1000ms it puts amount up by prev + 1
     //
