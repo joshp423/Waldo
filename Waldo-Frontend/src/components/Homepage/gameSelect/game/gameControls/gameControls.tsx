@@ -6,6 +6,7 @@ type GameControlsProps = {
   selectedTarget: string;
   setSelectedTarget: React.Dispatch<React.SetStateAction<string>>;
   completedTargets: string[];
+  timerAmount: number;
 };
 
 function GameControls({
@@ -13,9 +14,16 @@ function GameControls({
   selectedTarget,
   setSelectedTarget,
   completedTargets,
+  timerAmount,
 }: GameControlsProps) {
   return (
     <div className="gameControls">
+      <div className="timer">
+        Completion Time: {Math.floor(timerAmount / 60) //round down timer to minutes for first half then get seconds with amount / 60
+          .toString()}
+        :
+        {(timerAmount % 60).toString().padStart(2, "0") }
+      </div>
       {targets?.map((target) => (
         <GameControlTarget
           key={target.id}

@@ -126,15 +126,46 @@ function Game() {
       }
     }
   }
-  // , gamelogic
+  
 
   // , timer
 
-  const [timer, setTimer] = useState(true);
+  const [timerAmount, setTimerAmount] = useState(0); // start timer at 0
+  const timerStatus = useRef<number | null>(null); // keep a record of timerStatus, doesn't need to impact rendering so useRef
+
+  useEffect(() => {
+    //set timer and interval on mount
+    timerStatus.current = setInterval(() => {
+      setTimerAmount((prev) => prev + 1);
+    }, 1000 ); //every 1000ms it puts amount up by prev + 1
+    //
+    return () => { //stop interval if it unmounts to stop timer.
+      if (timerStatus.current) clearInterval(timerStatus.current);
+    };
+  }, []);
+
+  function stopTimer() {
+    if (timerStatus.current) {
+      clearInterval(timerStatus.current); //stops the timer
+    }
+    return;
+  }
+
+  // gamelogic
+
+  useEffect(() => {
+    if (completedTargets.length === 3) {
+      stopTimer();
+      console.log(timerStatus)
+    }
+  },[completedTargets])
+
+  // postgame popup
+
 
   // , control visuals
 
-  // , postgame popup
+  
 
   return (
     <div className="gameContainer">
@@ -143,6 +174,7 @@ function Game() {
         setSelectedTarget={setSelectedTarget}
         selectedTarget={selectedTarget}
         completedTargets={completedTargets}
+        timerAmount={timerAmount}
       />
       <div
         className={`gameImageContainer ${cursor !== "targeting" ? "" : "targetSelected"}`}
