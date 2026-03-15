@@ -169,7 +169,11 @@ function Game() {
 
   return (
     <div className="gameContainer">
-      <LeaderPopup gameComplete={gameComplete} timerAmount={timerAmount} gameTitle={gameTitle} />
+      <LeaderPopup
+        gameComplete={gameComplete}
+        timerAmount={timerAmount}
+        gameTitle={gameTitle}
+      />
       <GameControls
         targets={targets}
         setSelectedTarget={setSelectedTarget}
@@ -201,7 +205,7 @@ function Game() {
             }
           }}
           onClick={(e: React.MouseEvent<HTMLImageElement>) => {
-            if (selectedTarget) {
+            if (!selectedTarget) {
               if (!gameImage.current) {
                 return;
               }
@@ -217,6 +221,8 @@ function Game() {
                 (e.clientY - imageDetails.top) / imageDetails.height;
               setUserClickX(clickX);
               setUserClickY(clickY);
+
+              console.log(clickX, clickY);
 
               checkClick(clickX, clickY);
             }

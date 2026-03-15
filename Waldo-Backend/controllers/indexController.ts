@@ -38,7 +38,7 @@ export async function submitScore(req: Request<TargetParams>, res: Response) {
         }
         const leaderBoardEntry = await prisma.leaderboard.create({
             data: {
-                gameid: Number(req.params.gameTitle),
+                game: {connect: {title: req.params.gameTitle}},
                 time: time,
                 username: username,
             },
@@ -51,8 +51,13 @@ export async function submitScore(req: Request<TargetParams>, res: Response) {
 
 export async function getLeaderboard(req: Request<TargetParams>, res: Response) {
     const leaderboard = await prisma.leaderboard.findMany({
+        include: {
+            game: true,
+        },
         orderBy: {
-            id: "desc",
+            game: {
+                title: "asc",
+            },
         },
     });
     res.json({

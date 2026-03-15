@@ -35,5 +35,5 @@ model Leaderboard {
   gameid Int
   game Games @relation(fields: [gameid], references: [id])
   time Int
-  username String @unique
+  username String
 }

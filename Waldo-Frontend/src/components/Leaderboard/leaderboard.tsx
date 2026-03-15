@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import LeaderBoardEntry from "./entry/entry";
-import type { entry } from "../types/entry";
+import type { Entry } from "../types/entry";
 
 function Leaderboard() {
   const [leaderBoard, setLeaderBoard] = useState([]);
@@ -15,7 +15,8 @@ function Leaderboard() {
           method: "GET",
         });
         const data = await response.json();
-        setLeaderBoard(data);
+        setLeaderBoard(data.leaderboard);
+        console.log(data.leaderboard);
       } catch (error) {
         console.log(error);
       }
@@ -23,25 +24,27 @@ function Leaderboard() {
     getLeaderboard();
   }, []);
 
-  if (leaderBoard.length > 0 ) {
+  if (leaderBoard.length > 0) {
     return (
-        <div className="leaderboard">
-            <table>
-                <tr>
-                <th>Username</th>
-                <th>Time</th>
-                </tr>
-                {leaderBoard?.map((entry: entry) => (
-                    <LeaderBoardEntry key={entry.id} entry={entry} />
-                ))}
-            </table>
-        </div>
+      <div className="leaderboard">
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Time</th>
+              <th>Game</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaderBoard?.map((entry: Entry) => (
+              <LeaderBoardEntry key={entry.id} entry={entry} />
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
-  return(
-    <h1>No scores</h1>
-  )
-  
+  return <h1>No scores</h1>;
 }
 
 export default Leaderboard;

@@ -1,7 +1,14 @@
-interface entry {
+interface Entry {
   id: number;
   time: number;
   username: string;
+  title: string;
+  game: Game;
 }
 
-export type { entry };
+interface Game {
+  id: number;
+  title: string;
+}
+
+export type { Entry };
