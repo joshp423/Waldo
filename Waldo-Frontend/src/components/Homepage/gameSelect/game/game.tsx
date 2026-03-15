@@ -6,6 +6,7 @@ import toyImage from "../../../../assets/Toys.jpg";
 import troyImage from "../../../../assets/Troy.jpeg";
 import "./game.css";
 import type { target } from "../../../types/target";
+import LeaderPopup from "./leaderPopup/leaderPopup";
 
 function Game() {
   const { gameTitle } = useParams();
@@ -24,8 +25,10 @@ function Game() {
   const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
 
   const [imagePan, setImagePan] = useState({ x: 0, y: 0 });
-  const [Dragging, setDragging] = useState(false);
+  const [dragging, setDragging] = useState(false);
   const lastCursor = useRef({ x: 0, y: 0 });
+
+  const gameComplete = completedTargets.length === targets.length;
 
   function getZoomOrigin(e: MouseEvent | WheelEvent) {
     if (!gameImage.current) return { x: 0.5, y: 0.5 };
@@ -126,7 +129,6 @@ function Game() {
       }
     }
   }
-  
 
   // timer
 
@@ -135,11 +137,13 @@ function Game() {
 
   useEffect(() => {
     //set timer and interval on mount
-    timerStatus.current = setInterval(() => { //track the seconds ticking over and timerAmount updating without re-rendering
+    timerStatus.current = setInterval(() => {
+      //track the seconds ticking over and timerAmount updating without re-rendering
       setTimerAmount((prev) => prev + 1);
-    }, 1000 ); //every 1000ms it puts amount up by prev + 1
+    }, 1000); //every 1000ms it puts amount up by prev + 1
     //
-    return () => { //stop interval if it unmounts to stop timer.
+    return () => {
+      //stop interval if it unmounts to stop timer.
       if (timerStatus.current) clearInterval(timerStatus.current);
     };
   }, []);
@@ -147,6 +151,7 @@ function Game() {
   function stopTimer() {
     if (timerStatus.current) {
       clearInterval(timerStatus.current); //stops the timer
+      timerStatus.current = null;
     }
     return;
   }
@@ -156,19 +161,15 @@ function Game() {
   useEffect(() => {
     if (completedTargets.length === 3) {
       stopTimer();
-      console.log(timerStatus)
+      console.log(timerStatus);
     }
-  },[completedTargets])
+  }, [completedTargets]);
 
-  // postgame popup
-
-
-  // , control visuals
-
-  
+  // control visuals
 
   return (
     <div className="gameContainer">
+      <LeaderPopup gameComplete={gameComplete} timerAmount={timerAmount} gameTitle={gameTitle} />
       <GameControls
         targets={targets}
         setSelectedTarget={setSelectedTarget}
@@ -190,7 +191,7 @@ function Game() {
           style={{
             transform: `translate(${imagePan.x}px, ${imagePan.y}px) scale(${imageZoom / 100})`,
             transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
-            cursor: Dragging ? "grabbing" : "",
+            cursor: dragging ? "grabbing" : "",
           }}
           onMouseDown={(e: React.MouseEvent<HTMLImageElement>) => {
             if (e.button === 2) {
@@ -221,7 +222,7 @@ function Game() {
             }
           }}
           onMouseMove={(e) => {
-            if (!Dragging) return;
+            if (!dragging) return;
 
             // calculate the difference between current cursor and last cursor
             const amountDraggedY = e.clientY - lastCursor.current.y;

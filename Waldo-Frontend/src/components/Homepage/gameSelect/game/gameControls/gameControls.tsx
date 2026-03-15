@@ -19,10 +19,10 @@ function GameControls({
   return (
     <div className="gameControls">
       <div className="timer">
-        Completion Time: {Math.floor(timerAmount / 60) //round down timer to minutes for first half then get seconds with amount / 60
+        Your Time:
+        {Math.floor(timerAmount / 60) //round down timer to minutes for first half then get seconds with amount / 60
           .toString()}
-        :
-        {(timerAmount % 60).toString().padStart(2, "0") }
+        :{(timerAmount % 60).toString().padStart(2, "0")}
       </div>
       {targets?.map((target) => (
         <GameControlTarget
