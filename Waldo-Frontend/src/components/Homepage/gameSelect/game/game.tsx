@@ -17,10 +17,6 @@ function Game() {
   const [completedTargets, setCompletedTargets] = useState<string[]>([]);
   const [targets, setTargets] = useState<target[]>([]);
   const cursor = !selectedTarget ? "" : "targeting";
-
-  const [userClickX, setUserClickX] = useState<number | null>(null);
-  const [userClickY, setUserClickY] = useState<number | null>(null);
-
   const [imageZoom, setImageZoom] = useState<number>(100);
   const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
 
@@ -59,18 +55,12 @@ function Game() {
         const data = await response.json();
         setTargets(data);
       } catch (error) {
-        console.log(error); // change to proper handling
+        console.error(error);
       }
     }
 
     getTargets();
   }, [gameTitle]);
-
-  useEffect(() => {
-    if (userClickX !== null && userClickY !== null) {
-      console.log(userClickX, userClickY);
-    }
-  }, [userClickX, userClickY]);
 
   useEffect(() => {
     const container = imageContainer.current; //use the actual dom object given imageContainer is just a ref
@@ -123,7 +113,6 @@ function Game() {
         Number(checkTarget.y) > clickY - 0.03 &&
         Number(checkTarget.y) < clickY + 0.03
       ) {
-        console.log("success");
         setCompletedTargets([...completedTargets, selectedTarget]);
         setSelectedTarget("");
       }
@@ -161,7 +150,6 @@ function Game() {
   useEffect(() => {
     if (completedTargets.length === 3) {
       stopTimer();
-      console.log(timerStatus);
     }
   }, [completedTargets]);
 
@@ -219,11 +207,6 @@ function Game() {
                 (e.clientX - imageDetails.left) / imageDetails.width;
               const clickY =
                 (e.clientY - imageDetails.top) / imageDetails.height;
-              setUserClickX(clickX);
-              setUserClickY(clickY);
-
-              console.log(clickX, clickY);
-
               checkClick(clickX, clickY);
             }
           }}
@@ -247,6 +230,13 @@ function Game() {
           onMouseUp={() => setDragging(false)}
           onContextMenu={(e) => e.preventDefault()}
         />
+      </div>
+      <div className="controlExplainer">
+        <h1>Controls:</h1>
+        <h3>Right click to pan image</h3>
+        <h3>Scroll to zoom</h3>
+        <h3>Select a target then left click them on the image</h3>
+        <h3>Yellow: Selected, Green: Found Successfully</h3>
       </div>
     </div>
   );

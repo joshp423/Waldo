@@ -9,6 +9,7 @@ type GameSelectProps = {
 function GameSelect({ image, title, gameLink }: GameSelectProps) {
   return (
     <div className="gameSelect">
+      <h1>Choose a level</h1>
       <img src={image} alt={title} />
       <h1>
         <Link to={gameLink}>{title}</Link>

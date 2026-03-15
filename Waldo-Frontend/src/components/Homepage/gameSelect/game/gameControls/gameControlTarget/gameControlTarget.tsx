@@ -22,7 +22,6 @@ function GameControlTarget({
       })
     ) {
       setSelectedTarget(target.title);
-      console.log(selectedTarget);
     }
   };
 
