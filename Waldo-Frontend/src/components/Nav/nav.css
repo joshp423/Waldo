@@ -1,0 +1,39 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    background-color: #51513D;
+    color: white;
+    gap: 50px;
+    align-items: flex-end;
+    padding: 20px 20px 10px 20px;
+    font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+    font-weight: normal;
+}
+
+.nav>a {
+    color: white;
+}
+
+.titleDesc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.titleDesc>h1>a {
+    color: white;
+    font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+    font-weight: normal;
+}
+
+.titleDesc>h3 {
+    font-weight: 400;
+    color: white;
+}
+
+.nav>h3>a {
+    font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+    font-weight: normal;
+    color: white;
+
+}

@@ -1,0 +1,31 @@
+.gameControls {
+  display: grid;
+}
+
+.gameControls>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  gap: 10px;
+}
+
+.timer>h1.complete {
+    color: green;
+}
+
+.gameControlTarget{
+    padding: 20px;
+    margin: 20px;
+}
+
+.gameControlTarget>img {
+    max-height: 70%;
+    min-height: 50%;
+}
+
+.gameControlTarget>h3 {
+    font-size: 20px;
+}

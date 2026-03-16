@@ -1,6 +1,6 @@
 import GameControlTarget from "./gameControlTarget/gameControlTarget";
 import type { target } from "../../../../types/target";
-
+import "./gameControls.css";
 type GameControlsProps = {
   targets: target[];
   selectedTarget: string;
@@ -19,10 +19,12 @@ function GameControls({
   return (
     <div className="gameControls">
       <div className="timer">
-        Your Time:
-        {Math.floor(timerAmount / 60) //round down timer to minutes for first half then get seconds with amount / 60
-          .toString()}
-        :{(timerAmount % 60).toString().padStart(2, "0")}
+        <h3>Your Time:</h3>
+        <h1 className={`${completedTargets.length === 3 ? "complete" : ""}`}>
+          {Math.floor(timerAmount / 60) //round down timer to minutes for first half then get seconds with amount / 60
+            .toString()}
+          :{(timerAmount % 60).toString().padStart(2, "0")}
+        </h1>
       </div>
       {targets?.map((target) => (
         <GameControlTarget

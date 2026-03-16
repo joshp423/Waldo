@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./nav.css";
 
 function Nav() {
   return (
@@ -9,8 +10,8 @@ function Nav() {
         </h1>
         <h3>Find the Characters! Can you top the leaderboard?</h3>
       </div>
-      <Link to={"/"}>Home</Link>
-      <Link to={"/Leaderboard"}>Leaderboard</Link>
+      <h3><Link to={"/"}>Home</Link></h3>
+      <h3><Link to={"/Leaderboard"}>Leaderboard</Link></h3>
     </div>
   );
 }

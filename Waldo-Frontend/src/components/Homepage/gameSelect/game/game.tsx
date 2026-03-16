@@ -17,8 +17,8 @@ function Game() {
   const [completedTargets, setCompletedTargets] = useState<string[]>([]);
   const [targets, setTargets] = useState<target[]>([]);
   const cursor = !selectedTarget ? "" : "targeting";
-  const [imageZoom, setImageZoom] = useState<number>(100);
-  const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
+  const [imageZoom, setImageZoom] = useState<number>(50);
+  const [zoomOrigin, setZoomOrigin] = useState({ x: 25, y: 15 });
 
   const [imagePan, setImagePan] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
@@ -156,89 +156,96 @@ function Game() {
   // control visuals
 
   return (
-    <div className="gameContainer">
-      <LeaderPopup
-        gameComplete={gameComplete}
-        timerAmount={timerAmount}
-        gameTitle={gameTitle}
-      />
-      <GameControls
-        targets={targets}
-        setSelectedTarget={setSelectedTarget}
-        selectedTarget={selectedTarget}
-        completedTargets={completedTargets}
-        timerAmount={timerAmount}
-      />
-      <div
-        className={`gameImageContainer ${cursor !== "targeting" ? "" : "targetSelected"}`}
-        ref={imageContainer}
-        style={{
-          cursor: !selectedTarget ? "" : "crosshair",
-        }}
-      >
-        <img
-          src={image}
-          alt={gameTitle}
-          ref={gameImage}
-          style={{
-            transform: `translate(${imagePan.x}px, ${imagePan.y}px) scale(${imageZoom / 100})`,
-            transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
-            cursor: dragging ? "grabbing" : "",
-          }}
-          onMouseDown={(e: React.MouseEvent<HTMLImageElement>) => {
-            if (e.button === 2) {
-              e.preventDefault();
-              setDragging(true);
-              lastCursor.current = { x: e.clientX, y: e.clientY };
-            }
-          }}
-          onClick={(e: React.MouseEvent<HTMLImageElement>) => {
-            if (!selectedTarget) {
-              if (!gameImage.current) {
-                return;
-              }
-
-              //getBoundingCLientRect returns object with size and position of element relative to viewport
-              const imageDetails = gameImage.current.getBoundingClientRect();
-
-              //set client click minus bounding rectangle then set to percentage for calculation on BE
-
-              const clickX =
-                (e.clientX - imageDetails.left) / imageDetails.width;
-              const clickY =
-                (e.clientY - imageDetails.top) / imageDetails.height;
-              checkClick(clickX, clickY);
-            }
-          }}
-          onMouseMove={(e) => {
-            if (!dragging) return;
-
-            // calculate the difference between current cursor and last cursor
-            const amountDraggedY = e.clientY - lastCursor.current.y;
-            const amountDraggedX = e.clientX - lastCursor.current.x;
-
-            setImagePan((prev) => ({
-              // set image pan on previous + new amount dragged
-              x: prev.x + amountDraggedX,
-              y: prev.y + amountDraggedY,
-            }));
-
-            lastCursor.current = { x: e.clientX, y: e.clientY }; // set current lastCursor to current cursor
-          }}
-          onMouseOut={() => setDragging(false)}
-          onMouseLeave={() => setDragging(false)}
-          onMouseUp={() => setDragging(false)}
-          onContextMenu={(e) => e.preventDefault()}
+    <>
+        <LeaderPopup
+          gameComplete={gameComplete}
+          timerAmount={timerAmount}
+          gameTitle={gameTitle}
         />
+        
+      <div className="gameContainer">
+        
+        <GameControls
+          targets={targets}
+          setSelectedTarget={setSelectedTarget}
+          selectedTarget={selectedTarget}
+          completedTargets={completedTargets}
+          timerAmount={timerAmount}
+        />
+        <div
+          className={`gameImageContainer ${cursor !== "targeting" ? "" : "targetSelected"}`}
+          ref={imageContainer}
+          style={{
+            cursor: !selectedTarget ? "" : "crosshair",
+          }}
+        >
+          <img
+            src={image}
+            alt={gameTitle}
+            ref={gameImage}
+            style={{
+              transform: `translate(${imagePan.x}px, ${imagePan.y}px) scale(${imageZoom / 100})`,
+              transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
+              cursor: dragging ? "grabbing" : "",
+            }}
+            onMouseDown={(e: React.MouseEvent<HTMLImageElement>) => {
+              if (e.button === 2) {
+                e.preventDefault();
+                setDragging(true);
+                lastCursor.current = { x: e.clientX, y: e.clientY };
+              }
+            }}
+            onClick={(e: React.MouseEvent<HTMLImageElement>) => {
+              if (selectedTarget) {
+                if (!gameImage.current) {
+                  return;
+                }
+
+                //getBoundingCLientRect returns object with size and position of element relative to viewport
+                const imageDetails = gameImage.current.getBoundingClientRect();
+
+                //set client click minus bounding rectangle then set to percentage for calculation on BE
+
+                const clickX =
+                  (e.clientX - imageDetails.left) / imageDetails.width;
+                const clickY =
+                  (e.clientY - imageDetails.top) / imageDetails.height;
+                checkClick(clickX, clickY);
+              }
+            }}
+            onMouseMove={(e) => {
+              if (!dragging) return;
+
+              // calculate the difference between current cursor and last cursor
+              const amountDraggedY = e.clientY - lastCursor.current.y;
+              const amountDraggedX = e.clientX - lastCursor.current.x;
+
+              setImagePan((prev) => ({
+                // set image pan on previous + new amount dragged
+                x: prev.x + amountDraggedX,
+                y: prev.y + amountDraggedY,
+              }));
+
+              lastCursor.current = { x: e.clientX, y: e.clientY }; // set current lastCursor to current cursor
+            }}
+            onMouseOut={() => setDragging(false)}
+            onMouseLeave={() => setDragging(false)}
+            onMouseUp={() => setDragging(false)}
+            onContextMenu={(e) => e.preventDefault()}
+          />
+        </div>
+        
       </div>
       <div className="controlExplainer">
         <h1>Controls:</h1>
-        <h3>Right click to pan image</h3>
-        <h3>Scroll to zoom</h3>
-        <h3>Select a target then left click them on the image</h3>
-        <h3>Yellow: Selected, Green: Found Successfully</h3>
+        <ul>
+          <li>Right click to pan image</li>
+          <li>Scroll to zoom</li>
+          <li>Select a target then left click them on the image</li>
+          <li>Yellow: Selected, Green: Found Successfully</li>
+        </ul>
       </div>
-    </div>
+    </>
   );
 }
 

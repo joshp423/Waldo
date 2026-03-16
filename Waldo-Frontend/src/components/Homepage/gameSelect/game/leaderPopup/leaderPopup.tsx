@@ -37,7 +37,7 @@ function LeaderPopup({
   };
 
   return (
-    <div className={`popup ${gameComplete === true ? "" : "hidden"}`}>
+    <div className={`popup ${gameComplete === false ? "hidden" : ""}`}>
       <form action="Post" onSubmit={submitTime}>
         <h1>Level Complete!</h1>
         <h3>
