@@ -7,45 +7,46 @@
   width: 100%;
   height: 100%;
   background-color: black;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .popupContent {
   margin: 20% auto;
   padding: 20px;
-  border: 2px #51513D solid;
+  border: 2px #51513d solid;
   border-radius: 24px;
   width: 30%;
-  background-color: #1B2021;
+  background-color: #1b2021;
   color: white;
 }
 
-.popupContent>form {
+.popupContent > form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   text-align: center;
 }
 
-.popupContent>form>input {
-  border: 1px solid #E3DC95;
+.popupContent > form > input {
+  border: 1px solid #e3dc95;
   border-radius: 24px;
   padding: 5px 15px 5px 15px;
-  
 }
 
-.popupContent>form>div>button {
-  border: 1px solid #E3DC95;
+.popupContent > form > div > button {
+  border: 1px solid #e3dc95;
   border-radius: 24px;
   padding: 5px 15px 5px 15px;
-  background-color: #E3DC95;
-  font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+  background-color: #e3dc95;
+  font-family:
+    Superclarendon, "Bookman Old Style", "URW Bookman", "URW Bookman L",
+    "Georgia Pro", Georgia, serif;
   font-size: 14px;
   font-weight: 600;
   align-self: center;
 }
 
-.popupContent>form>div {
+.popupContent > form > div {
   display: flex;
   justify-content: center;
   gap: 10px;

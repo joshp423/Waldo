@@ -9,19 +9,22 @@ function Homepage() {
     <>
       <h1 id="chooseLevel">Choose a level</h1>
       <div className="homePage">
-        
         <div className="spaceGameSelect">
           <GameSelect
             image={spaceImage}
             title={"Space Station"}
-            gameLink={"https://waldo-frontend-eta.vercel.app/game/space-station"}
+            gameLink={
+              "https://waldo-frontend-eta.vercel.app/game/space-station"
+            }
           />
         </div>
         <div className="troyGameSelect">
           <GameSelect
             image={troyImage}
             title={"The Battle of Troy"}
-            gameLink={"https://waldo-frontend-eta.vercel.app/game/battle-of-troy"}
+            gameLink={
+              "https://waldo-frontend-eta.vercel.app/game/battle-of-troy"
+            }
           />
         </div>
         <div className="toyGameSelect">

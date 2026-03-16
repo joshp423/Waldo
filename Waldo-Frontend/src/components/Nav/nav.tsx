@@ -10,8 +10,12 @@ function Nav() {
         </h1>
         <h3>Find the Characters! Can you top the leaderboard?</h3>
       </div>
-      <h3><Link to={"/"}>Home</Link></h3>
-      <h3><Link to={"/Leaderboard"}>Leaderboard</Link></h3>
+      <h3>
+        <Link to={"/"}>Home</Link>
+      </h3>
+      <h3>
+        <Link to={"/Leaderboard"}>Leaderboard</Link>
+      </h3>
     </div>
   );
 }

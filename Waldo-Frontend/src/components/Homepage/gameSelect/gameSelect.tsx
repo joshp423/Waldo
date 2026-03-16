@@ -10,12 +10,10 @@ function GameSelect({ image, title, gameLink }: GameSelectProps) {
   return (
     <div className="gameSelect">
       <Link to={gameLink}>
-      <div>
-        <img src={image} alt={title} />
-      </div>
-        <h1>
-          {title}
-        </h1>
+        <div>
+          <img src={image} alt={title} />
+        </div>
+        <h1>{title}</h1>
       </Link>
     </div>
   );

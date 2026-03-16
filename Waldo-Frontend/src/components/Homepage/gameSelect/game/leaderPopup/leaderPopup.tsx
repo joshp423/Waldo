@@ -19,17 +19,20 @@ function LeaderPopup({
   const submitTime = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const rsp = await fetch(`https://waldo-backend-4a7r.onrender.com/${gameTitle}/submit-score`, {
-      headers: {
-        "Content-Type": "application/json",
+    const rsp = await fetch(
+      `https://waldo-backend-4a7r.onrender.com/${gameTitle}/submit-score`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          gameid: gameTitle,
+          time: timerAmount,
+          username: username,
+        }),
       },
-      method: "POST",
-      body: JSON.stringify({
-        gameid: gameTitle,
-        time: timerAmount,
-        username: username,
-      }),
-    });
+    );
     if (rsp.status != 201) {
       return console.log(rsp.body);
     }
@@ -37,14 +40,13 @@ function LeaderPopup({
   };
 
   const backHome = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   if (gameComplete !== true) return null;
 
   return (
-    <div className={"popup"}
-    >
+    <div className={"popup"}>
       <div className="popupContent">
         <form action="Post" onSubmit={submitTime}>
           <h1>Level Complete!</h1>
@@ -67,7 +69,9 @@ function LeaderPopup({
           />
           <div>
             <button type="submit">Submit</button>
-            <button type="button" onClick={backHome}>Home</button>
+            <button type="button" onClick={backHome}>
+              Home
+            </button>
           </div>
         </form>
       </div>

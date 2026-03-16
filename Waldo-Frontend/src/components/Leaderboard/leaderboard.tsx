@@ -8,12 +8,15 @@ function Leaderboard() {
   useEffect(() => {
     async function getLeaderboard() {
       try {
-        const response = await fetch("https://waldo-backend-4a7r.onrender.com/get-leaderboard", {
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          "https://waldo-backend-4a7r.onrender.com/get-leaderboard",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "GET",
           },
-          method: "GET",
-        });
+        );
         const data = await response.json();
         setLeaderBoard(data.leaderboard);
         console.log(data.leaderboard);

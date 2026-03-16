@@ -24,7 +24,8 @@ function Game() {
   const [dragging, setDragging] = useState(false);
   const lastCursor = useRef({ x: 0, y: 0 });
 
-  const gameComplete = targets.length > 0 && completedTargets.length === targets.length;
+  const gameComplete =
+    targets.length > 0 && completedTargets.length === targets.length;
 
   function getZoomOrigin(e: MouseEvent | WheelEvent) {
     if (!gameImage.current) return { x: 0.5, y: 0.5 };
@@ -157,14 +158,13 @@ function Game() {
 
   return (
     <>
-        <LeaderPopup
-          gameComplete={gameComplete}
-          timerAmount={timerAmount}
-          gameTitle={gameTitle}
-        />
-        
+      <LeaderPopup
+        gameComplete={gameComplete}
+        timerAmount={timerAmount}
+        gameTitle={gameTitle}
+      />
+
       <div className="gameContainer">
-        
         <GameControls
           targets={targets}
           setSelectedTarget={setSelectedTarget}
@@ -234,7 +234,6 @@ function Game() {
             onContextMenu={(e) => e.preventDefault()}
           />
         </div>
-        
       </div>
       <div className="controlExplainer">
         <h1>Controls:</h1>

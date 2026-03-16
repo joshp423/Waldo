@@ -12,10 +12,9 @@
   border-radius: 24px;
 }
 
-.gameImageContainer>img {
+.gameImageContainer > img {
   transform: translate(0px, 0px) scale(0.2);
 }
-
 
 .controlExplainer {
   color: white;
@@ -24,5 +23,5 @@
   align-items: center;
   margin-bottom: 20px;
   padding-top: 20px;
-  border-top: 1px #51513D solid;
+  border-top: 1px #51513d solid;
 }

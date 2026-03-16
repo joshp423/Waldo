@@ -1,48 +1,52 @@
 .nav {
-    display: flex;
-    flex-direction: row;
-    background-color: #51513D;
-    color: white;
-    gap: 50px;
-    align-items: flex-end;
-    padding: 20px 20px 10px 20px;
-    font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
-    font-weight: normal;
+  display: flex;
+  flex-direction: row;
+  background-color: #51513d;
+  color: white;
+  gap: 50px;
+  align-items: flex-end;
+  padding: 20px 20px 10px 20px;
+  font-family:
+    Superclarendon, "Bookman Old Style", "URW Bookman", "URW Bookman L",
+    "Georgia Pro", Georgia, serif;
+  font-weight: normal;
 }
 
-.nav>a {
-    color: white;
+.nav > a {
+  color: white;
 }
-
 
 .titleDesc {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.titleDesc>h1>a {
-    color: white;
-    font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
-    font-weight: normal;
+.titleDesc > h1 > a {
+  color: white;
+  font-family:
+    Superclarendon, "Bookman Old Style", "URW Bookman", "URW Bookman L",
+    "Georgia Pro", Georgia, serif;
+  font-weight: normal;
 }
 
-.titleDesc>h3 {
-    font-weight: 400;
-    color: white;
+.titleDesc > h3 {
+  font-weight: 400;
+  color: white;
 }
 
-.nav>h3>a {
-    font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
-    font-weight: normal;
-    color: black;
-    border: 1px solid #E3DC95;
-    border-radius: 24px;
-    padding: 5px 15px 5px 15px;
-    background-color: #E3DC95;
+.nav > h3 > a {
+  font-family:
+    Superclarendon, "Bookman Old Style", "URW Bookman", "URW Bookman L",
+    "Georgia Pro", Georgia, serif;
+  font-weight: normal;
+  color: black;
+  border: 1px solid #e3dc95;
+  border-radius: 24px;
+  padding: 5px 15px 5px 15px;
+  background-color: #e3dc95;
 }
 
-.nav>h3>a:hover {
-    color: green;
+.nav > h3 > a:hover {
+  color: green;
 }
-
