@@ -14,21 +14,21 @@ function Homepage() {
           <GameSelect
             image={spaceImage}
             title={"Space Station"}
-            gameLink={"https://blog-api-backend-jfv8.onrender.com/game/space-station"}
+            gameLink={"https://waldo-frontend-eta.vercel.app/game/space-station"}
           />
         </div>
         <div className="troyGameSelect">
           <GameSelect
             image={troyImage}
             title={"The Battle of Troy"}
-            gameLink={"https://blog-api-backend-jfv8.onrender.com/game/battle-of-troy"}
+            gameLink={"https://waldo-frontend-eta.vercel.app/game/battle-of-troy"}
           />
         </div>
         <div className="toyGameSelect">
           <GameSelect
             image={toyImage}
             title={"Toy Store"}
-            gameLink={"https://blog-api-backend-jfv8.onrender.com/game/toy-store"}
+            gameLink={"https://waldo-frontend-eta.vercel.app/game/toy-store"}
           />
         </div>
       </div>
