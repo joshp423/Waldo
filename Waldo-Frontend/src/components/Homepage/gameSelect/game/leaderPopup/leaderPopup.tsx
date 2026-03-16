@@ -19,7 +19,7 @@ function LeaderPopup({
   const submitTime = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const rsp = await fetch(`http://localhost:3000/${gameTitle}/submit-score`, {
+    const rsp = await fetch(`https://blog-api-backend-jfv8.onrender.com/${gameTitle}/submit-score`, {
       headers: {
         "Content-Type": "application/json",
       },

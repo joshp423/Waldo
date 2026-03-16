@@ -6,7 +6,7 @@ import toyImage from "../../../../assets/Toys.jpg";
 import troyImage from "../../../../assets/Troy.jpeg";
 import "./game.css";
 import type { target } from "../../../types/target";
-import LeaderPopup from "./leaderPopup/leaderPopup";
+import LeaderPopup from "./leaderPopup/leaderPopup.tsx";
 
 function Game() {
   const { gameTitle } = useParams();
@@ -44,7 +44,7 @@ function Game() {
     async function getTargets() {
       try {
         const response = await fetch(
-          `http://localhost:3000/get-targets/${gameTitle}`,
+          `https://blog-api-backend-jfv8.onrender.com/get-targets/${gameTitle}`,
           {
             headers: {
               "Content-Type": "application/json",

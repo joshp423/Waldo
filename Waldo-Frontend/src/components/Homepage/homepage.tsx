@@ -14,21 +14,21 @@ function Homepage() {
           <GameSelect
             image={spaceImage}
             title={"Space Station"}
-            gameLink={"http://localhost:5173/game/space-station"}
+            gameLink={"https://blog-api-backend-jfv8.onrender.com/game/space-station"}
           />
         </div>
         <div className="troyGameSelect">
           <GameSelect
             image={troyImage}
             title={"The Battle of Troy"}
-            gameLink={"http://localhost:5173/game/battle-of-troy"}
+            gameLink={"https://blog-api-backend-jfv8.onrender.com/game/battle-of-troy"}
           />
         </div>
         <div className="toyGameSelect">
           <GameSelect
             image={toyImage}
             title={"Toy Store"}
-            gameLink={"http://localhost:5173/game/toy-store"}
+            gameLink={"https://blog-api-backend-jfv8.onrender.com/game/toy-store"}
           />
         </div>
       </div>
