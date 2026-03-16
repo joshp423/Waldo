@@ -8,7 +8,7 @@ function Leaderboard() {
   useEffect(() => {
     async function getLeaderboard() {
       try {
-        const response = await fetch("https://blog-api-backend-jfv8.onrender.com/get-leaderboard", {
+        const response = await fetch("https://waldo-backend-4a7r.onrender.com/get-leaderboard", {
           headers: {
             "Content-Type": "application/json",
           },

@@ -44,7 +44,7 @@ function Game() {
     async function getTargets() {
       try {
         const response = await fetch(
-          `https://blog-api-backend-jfv8.onrender.com/get-targets/${gameTitle}`,
+          `https://waldo-backend-4a7r.onrender.com/get-targets/${gameTitle}`,
           {
             headers: {
               "Content-Type": "application/json",
