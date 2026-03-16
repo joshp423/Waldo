@@ -47,7 +47,7 @@ function Leaderboard() {
       </>
     );
   }
-  return <h1>No scores</h1>;
+  return <h1>Loading Scores</h1>;
 }
 
 export default Leaderboard;
