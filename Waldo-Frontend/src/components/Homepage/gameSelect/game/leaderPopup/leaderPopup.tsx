@@ -36,28 +36,41 @@ function LeaderPopup({
     navigate("/Leaderboard");
   };
 
+  const backHome = () => {
+    navigate("/")
+  }
+
+  if (gameComplete !== true) return null;
+
   return (
-    <div className={`popup ${gameComplete === false ? "hidden" : ""}`}>
-      <form action="Post" onSubmit={submitTime}>
-        <h1>Level Complete!</h1>
-        <h3>
-          Your time:{" "}
-          {Math.floor(timerAmount / 60) //round down timer to minutes for first half then get seconds with amount / 60
-            .toString()}
-          :{(timerAmount % 60).toString().padStart(2, "0")}
-        </h3>
-        <label htmlFor="username">
-          Enter a username to add your time to the leaderboard
-        </label>
-        <input
-          type="text"
-          name="username"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-        <button type="submit">Submit</button>
-      </form>
+    <div className={"popup"}
+    >
+      <div className="popupContent">
+        <form action="Post" onSubmit={submitTime}>
+          <h1>Level Complete!</h1>
+          <h3>
+            Your time:{" "}
+            {Math.floor(timerAmount / 60) //round down timer to minutes for first half then get seconds with amount / 60
+              .toString()}
+            :{(timerAmount % 60).toString().padStart(2, "0")}
+          </h3>
+          <label htmlFor="username">
+            Enter a username to add your time to the leaderboard.
+          </label>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+          <div>
+            <button type="submit">Submit</button>
+            <button type="button" onClick={backHome}>Home</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LeaderBoardEntry from "./entry/entry";
 import type { Entry } from "../types/entry";
-
+import "./leaderboard.css";
 function Leaderboard() {
   const [leaderBoard, setLeaderBoard] = useState([]);
 
@@ -26,22 +26,25 @@ function Leaderboard() {
 
   if (leaderBoard.length > 0) {
     return (
-      <div className="leaderboard">
-        <table>
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Time</th>
-              <th>Game</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaderBoard?.map((entry: Entry) => (
-              <LeaderBoardEntry key={entry.id} entry={entry} />
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <>
+        <h1 className="leaderboardTitle">Leaderboard</h1>
+        <div className="leaderboard">
+          <table>
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Time</th>
+                <th>Game</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderBoard?.map((entry: Entry) => (
+                <LeaderBoardEntry key={entry.id} entry={entry} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
     );
   }
   return <h1>No scores</h1>;

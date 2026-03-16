@@ -9,6 +9,7 @@
   overflow: hidden;
   min-width: 100%;
   background-color: black;
+  border-radius: 24px;
 }
 
 .gameImageContainer>img {
@@ -22,4 +23,6 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  padding-top: 20px;
+  border-top: 1px #51513D solid;
 }
